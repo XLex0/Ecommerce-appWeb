@@ -6,57 +6,35 @@
     <title><%= title %></title>
     <link rel="stylesheet" href="/css/styles.css"> 
     <style>
-        .form-container { 
-            max-width: 600px; 
-            margin: 20px auto; 
-            padding: 20px; 
-            border: 1px solid #ccc; 
-            border-radius: 8px; 
-            background-color: #fff;
-        }
+        /* Estructura de dos columnas */
+        body { display: flex; margin: 0; min-height: 100vh; font-family: sans-serif; }
+        .sidebar { width: 250px; background-color: #f8f9fa; padding: 20px; border-right: 1px solid #ddd; }
+        .main-content { flex: 1; padding: 20px; }
+
+        /* Estilos del Formulario */
+        .form-container { max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #fff; }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
-        .form-group input, .form-group textarea { 
-            width: 100%; 
-            padding: 8px; 
-            box-sizing: border-box; 
-            border: 1px solid #ccc; 
-            border-radius: 4px;
-        }
-        .error-box { 
-            background-color: #f8d7da; 
-            color: #721c24; 
-            padding: 10px; 
-            border-radius: 4px; 
-            margin-bottom: 20px; 
-            border: 1px solid #f5c6cb;
-        }
-        .error-box ul { margin: 0; padding-left: 20px; }
-        .btn-submit {
-            background-color: #28a745; 
-            color: white; 
-            padding: 10px 15px; 
-            border: none; 
-            border-radius: 4px; 
-            cursor: pointer;
-            font-size: 1em;
-        }
-        .btn-submit:hover { background-color: #218838; }
+        .form-group input, .form-group textarea { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        .error-box { background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 4px; margin-bottom: 20px; border: 1px solid #f5c6cb; }
+        .btn-submit { background-color: #28a745; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; }
     </style>
 </head>
 <body>
-    <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background-color: #f8f9fa;">
-        <h1>Marketplace de Técnicos</h1>
-        <nav>
-            <a href="/inventory" style="margin-right: 15px;">Catálogo General</a>
-            <a href="/inventory/my-publications" style="margin-right: 15px;">Mis Publicaciones</a>
-            <form action="/auth/signout" method="POST" style="display: inline;">
+
+    <aside class="sidebar">
+        <h1>Marketplace</h1>
+        <nav style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+            <a href="/inventory">Catálogo General</a>
+            <a href="/inventory/create" style="font-weight: bold; color: #007bff;">+ Publicar Repuesto</a>
+            <a href="/inventory/my-publications">Mis Publicaciones</a>
+            <form action="/auth/signout" method="POST">
                 <button type="submit">Cerrar Sesión</button>
             </form>
         </nav>
-    </header>
+    </aside>
 
-    <main style="padding: 20px;">
+    <main class="main-content">
         <div class="form-container">
             <h2><%= title %></h2>
 
@@ -100,12 +78,11 @@
                 <div class="form-group">
                     <label for="image">Fotografía del componente *</label>
                     <input type="file" id="image" name="image" accept="image/*" required>
-                    <small style="color: #6c757d;">Selecciona una foto clara del repuesto o de la etiqueta del chasis.</small>
                 </div>
 
                 <div style="margin-top: 20px;">
                     <button type="submit" class="btn-submit">Guardar Repuesto</button>
-                    <a href="/inventory" style="margin-left: 15px; color: #dc3545; text-decoration: none;">Cancelar</a>
+                    <a href="/inventory" style="margin-left: 15px; color: #dc3545;">Cancelar</a>
                 </div>
             </form>
         </div>
